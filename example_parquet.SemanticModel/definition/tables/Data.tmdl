@@ -1,0 +1,94 @@
+table Data
+	lineageTag: 46374360-76ff-4949-a34a-4343b2f1ea82
+
+	column OrderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f39eeff-4fce-4513-a480-a368fc82cb5f
+		summarizeBy: count
+		sourceColumn: OrderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1f41006c-d2af-4af2-8ecd-5b21ff57e124
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: c9b9e6a1-8bb6-45f6-9e03-e29f2887871a
+		summarizeBy: count
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StoreKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 898aa394-c552-457d-b87f-24b95583f39f
+		summarizeBy: count
+		sourceColumn: StoreKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d628fb7-091c-4e36-b6ad-7cdd11310743
+		summarizeBy: count
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: 9d559bf6-7402-4e65-8deb-5ffd629ba920
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: b39993b2-ded5-4941-9589-cb1b526ecaa4
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	partition Data = m
+		mode: import
+		source = ```
+				let
+				    Source = Folder.Files("C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\parquet"),
+				    #"Removed Other Columns" = Table.SelectColumns(Source,{"Content"}),
+				    Custom1 = Table.TransformColumns( #"Removed Other Columns", {{"Content", Parquet.Document, type {table}}}),
+				    Custom2 = Table.Combine( Custom1[Content] ),
+				    Custom3 = Table.TransformColumns(
+				        Custom2, 
+				        {
+				            {"OrderDate", each DateTime.Date(DateTime.From(_)), type date},
+				            {"UnitPrice", Number.From, Currency.Type}
+				        }
+				    )
+				    
+				in
+				    Custom3
+				```
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
