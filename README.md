@@ -19,3 +19,8 @@ csv_to_parquet_cli.exe -i "C:\Caminho\CSV" -o "C:\Caminho\Parquet" -e ".csv" -en
 Options
 -i "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\input" -o "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\output" -e ".csv" -enc "utf-8" -s ";" -hd 0
 
+pyinstaller --onefile --windowed --add-data "icon.png;." csv_to_parquet_app.py
+
+pyinstaller --onefile csv_to_parquet_cli.py
+
+

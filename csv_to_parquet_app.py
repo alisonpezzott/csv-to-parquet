@@ -12,18 +12,18 @@ def convert_files(input_dir, output_dir, extension, encoding, sep, header):
         os.makedirs(output_dir)
 
     sep_map = {
-        'tab': '\t',
         ';': ';',
         ',': ',',
         '|': '|',
-        'space': ' ',
+        'Space': ' ',
+        'Tab': '\t',
         'Other': sep
     }
     sep = sep_map.get(sep, sep)
 
     header_map = {
-        'None': None,
         '0': 0,
+        'None': None,
         '1': 1,
         '2': 2,
         '3': 3,
@@ -153,14 +153,14 @@ encoding_entry.grid_remove()
 
 tk.Label(app, text="Separator:", anchor="w", bg=bg_color, fg=fg_color).grid(row=7, column=0, padx=8, pady=5, sticky="w")
 sep_entry = ttk.Entry(app, textvariable=sep, width=8)
-ttk.OptionMenu(app, sep, 'Tab', ';', ',', '|', 'Space', 'Other').grid(row=7, column=1, padx=8, pady=5)
+ttk.OptionMenu(app, sep, ';', ';', ',', '|', 'Tab', 'Space', 'Other').grid(row=7, column=1, padx=8, pady=5)
 sep.trace('w', lambda *args: on_option_change(sep, sep_entry))
 sep_entry.grid(row=7, column=2, padx=8, pady=5)
 sep_entry.grid_remove()
 
 tk.Label(app, text="Header:", anchor="w", bg=bg_color, fg=fg_color).grid(row=8, column=0, padx=8, pady=5, sticky="w")
 header_entry = ttk.Entry(app, textvariable=header, width=8)
-ttk.OptionMenu(app, header, 'None', 'None', '0', '1', '2', '3', '4', '5', 'Other').grid(row=8, column=1, padx=8, pady=5)
+ttk.OptionMenu(app, header, '0', '0', 'None', '1', '2', '3', '4', '5', 'Other').grid(row=8, column=1, padx=8, pady=5)
 header.trace('w', lambda *args: on_option_change(header, header_entry))
 header_entry.grid(row=8, column=2, padx=8, pady=5)
 header_entry.grid_remove()
