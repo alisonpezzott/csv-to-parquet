@@ -6,3 +6,7 @@ exe/
 custom.css
 icon.png
 internal_usage.md
+sample_dataset_csv/
+sample_dataset_parquet/
+pbi_projects/
+
