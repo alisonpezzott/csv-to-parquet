@@ -1,0 +1,2 @@
+cd C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\exe
+csv_to_parquet_cli.exe -i "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\sample_dataset_csv" -o "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\sample_dataset_parquet" -e ".csv" -enc "utf-8" -s ";" -hd 0

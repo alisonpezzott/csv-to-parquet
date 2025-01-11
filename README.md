@@ -31,15 +31,15 @@ Configure in Actions the full path of the executable file, for example:
 `C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\exe\csv_to_parquet_cli.exe`
 
 You can use options as:  
-`-i "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\input" -o "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\output" -e ".csv" -enc "utf-8" -s ";" -hd 0`
+`-i "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\sample_dataset_csv" -o "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\sample_dataset_parquet" -e ".csv" -enc "utf-8" -s ";" -hd 0`
 
 ##### Run manually
 
 You can run on powershell or configure a .bat file to run manually too  
 
 ```bash
-cd C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\exe\
-csv_to_parquet_cli.exe -i "C:\InputPath" -o "C:\OutputPath" -e ".csv" -enc "utf-8" -s ";" -hd 0
+cd C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\exe
+csv_to_parquet_cli.exe -i "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\sample_dataset_csv" -o "C:\Users\aliso\OneDrive\Documentos\GitHub\csv-to-parquet\sample_dataset_parquet" -e ".csv" -enc "utf-8" -s ";" -hd 0
 ```
 
 #### Script Python
