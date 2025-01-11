@@ -1,9 +1,0 @@
-{
-  "version": "4.0",
-  "datasetReference": {
-    "byPath": {
-      "path": "../example_parquet.SemanticModel"
-    },
-    "byConnection": null
-  }
-}
