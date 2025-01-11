@@ -6,8 +6,8 @@ import pyarrow as pa
 import pandas as pd
 
 # Directories
-input_dir = 'input'
-output_dir = 'output'
+input_dir = 'sample_dataset_csv'
+output_dir = 'sample_dataset_parquet'
 extension = '.csv'
 
 # Create the output directory if it doesn't exist
