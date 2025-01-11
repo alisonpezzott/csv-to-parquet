@@ -18,7 +18,7 @@ Watch the YouTube video demonstration of this case here: soon
 
 #### APP
 
-![app_interface](assets\app_interface.png)
+![app_interface](assets/app_interface.png)
 
 An .exe application that does not require installation, just download, configure the parameters, and run.
 
