@@ -8,5 +8,9 @@ icon.png
 internal_usage.md
 sample_dataset_csv/
 sample_dataset_parquet/
+sample_dataset_xlsx/
 pbi_projects/
+data_generator/
+**/.xlsx
+
 

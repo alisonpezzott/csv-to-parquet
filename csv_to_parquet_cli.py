@@ -8,19 +8,22 @@ def convert_files(input_dir, output_dir, extension='.csv', encoding='utf-8', sep
 
     for filename in os.listdir(input_dir):
         if filename.endswith(extension):
-            csv_path = os.path.join(input_dir, filename)
+            full_path = os.path.join(input_dir, filename)
             try:
-                df = pd.read_csv(csv_path, encoding=encoding, sep=sep, header=header, low_memory=False)
+                if extension == '.xlsx':
+                    df = pd.read_excel(full_path, header=header, engine='openpyxl')
+                else:
+                    df = pd.read_csv(full_path, encoding=encoding, sep=sep, header=header, low_memory=False)
                 parquet_path = os.path.join(output_dir, filename.replace(extension, '.parquet'))
                 df.to_parquet(parquet_path)
-                print(f"Processed file {csv_path}")
+                print(f"Processed file {full_path}")
             except Exception as e:
-                print(f"Error processing file {csv_path}: {e}")
+                print(f"Error processing file {full_path}: {e}")
 
     print("Conversion completed!")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Convert CSV files to Parquet format.")
+    parser = argparse.ArgumentParser(description="Convert CSV or XLSX files to Parquet format.")
 
     parser.add_argument("--input", "-i", required=True, help="Input directory with CSV files")
     parser.add_argument("--output", "-o", required=True, help="Output directory for Parquet files")

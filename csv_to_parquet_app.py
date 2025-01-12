@@ -35,14 +35,17 @@ def convert_files(input_dir, output_dir, extension, encoding, sep, header):
 
     for filename in os.listdir(input_dir):
         if filename.endswith(extension):
-            csv_path = os.path.join(input_dir, filename)
+            full_path = os.path.join(input_dir, filename)
             try:
-                df = pd.read_csv(csv_path, encoding=encoding, sep=sep, header=header, low_memory=False)
+                if extension == '.xlsx':
+                    df = pd.read_excel(full_path, header=header, engine='openpyxl')
+                else:
+                    df = pd.read_csv(full_path, encoding=encoding, sep=sep, header=header, low_memory=False)
                 parquet_path = os.path.join(output_dir, filename.replace(extension, '.parquet'))
                 df.to_parquet(parquet_path)
-                print(f"Processed file {csv_path}")
+                print(f"Processed file {full_path}")
             except Exception as e:
-                print(f"Error processing file {csv_path}: {e}")
+                print(f"Error processing file {full_path}: {e}")
 
     print("Conversion completed!")
 
@@ -142,7 +145,7 @@ ttk.Entry(app, textvariable=output_dir, width=50).grid(row=4, column=1, padx=8, 
 ttk.Button(app, text="Browse", command=browse_output).grid(row=4, column=2, padx=8, pady=4)
 
 tk.Label(app, text="Extension:", anchor="w", bg=bg_color, fg=fg_color).grid(row=5, column=0, padx=8, pady=5, sticky="w")
-ttk.OptionMenu(app, extension, '.csv', '.csv', '.txt').grid(row=5, column=1, padx=8, pady=5)
+ttk.OptionMenu(app, extension, '.csv', '.csv', '.txt', '.xlsx').grid(row=5, column=1, padx=8, pady=5)
 
 tk.Label(app, text="Encoding:", anchor="w", bg=bg_color, fg=fg_color).grid(row=6, column=0, padx=8, pady=5, sticky="w")
 encoding_entry = ttk.Entry(app, textvariable=encoding, width=8)
@@ -185,7 +188,7 @@ github_link = tk.Label(app, text="GitHub: https://github.com/alisonpezzott/csv-t
 github_link.grid(row=10, column=0, columnspan=3)
 github_link.bind("<Button-1>", lambda e: os.system("start https://github.com/alisonpezzott/csv-to-parquet"))
 
-version_label = tk.Label(app, text="CSV to Parquet Version: 1.0.0", bg=bg_color, fg=fg_color)
+version_label = tk.Label(app, text="CSV to Parquet Version: 1.1.0", bg=bg_color, fg=fg_color)
 version_label.grid(row=11, column=0, columnspan=3, pady=5)
 
 app.mainloop()
