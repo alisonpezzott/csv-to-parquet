@@ -50,6 +50,7 @@ Unlike the compiled versions above, this is a Python script that can be run in V
 
 |Version|Updated|Link|Release Note|
 |---|---|---|:--|
+|v1.1.0|2025-01-12 20:05:00|[Csv to Parquet v1.1.0](https://github.com/alisonpezzott/csv-to-parquet/releases/tag/v1.1.0)|Included xlsx extension|
 |v1.0.0|2025-01-11 15:49:00|[Csv to Parquet v1.0.0](https://github.com/alisonpezzott/csv-to-parquet/releases/tag/v1.0.0)|Initial version|
 
 
